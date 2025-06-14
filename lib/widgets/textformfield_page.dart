@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
 class TextformfieldPage extends StatefulWidget {
@@ -9,6 +10,20 @@ class _TextformfieldPageState extends State<TextformfieldPage> {
   final TextEditingController _correoController = TextEditingController();
   final TextEditingController _contrasenaController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  void mostrarSnackbarArriba(BuildContext context) {
+    Flushbar(
+      // flushbarPosition: FlushbarPosition.BOTTOM,//APAREZCA ABAJO
+      flushbarPosition: FlushbarPosition.TOP, //APAREZCA ARRIBA
+      title: "Error",
+      message: "Revisa el formulario",
+      duration: Duration(seconds: 3),
+      backgroundColor: Colors.redAccent,
+      margin: EdgeInsets.all(8),
+      borderRadius: BorderRadius.circular(24),
+      icon: Icon(Icons.error),
+    ).show(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +86,8 @@ class _TextformfieldPageState extends State<TextformfieldPage> {
                     // validando form
                     if (_formKey.currentState!.validate()) {
                       print(_formKey.currentState!.validate());
+
+                      //  SNACKBAR EN LA PARTE DE ABAJO
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text("Formulario validado"),
@@ -78,12 +95,13 @@ class _TextformfieldPageState extends State<TextformfieldPage> {
                         ),
                       );
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("Revisa las alertas"),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
+                      mostrarSnackbarArriba(context);
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //     content: Text("Revisa las alertas"),
+                      //     backgroundColor: Colors.red,
+                      //   ),
+                      // );
                     }
                   },
                   child: Text("Enviar form"),
