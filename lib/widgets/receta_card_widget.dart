@@ -14,6 +14,7 @@ class RecetaCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 8),
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.45),
         borderRadius: BorderRadius.circular(25),

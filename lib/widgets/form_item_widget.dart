@@ -18,6 +18,7 @@ class FormItemWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: TextField(
+        style: TextStyle(color: Colors.white),
         maxLines: maxLines,
         controller: controller,
         decoration: InputDecoration(
