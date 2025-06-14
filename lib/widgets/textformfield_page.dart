@@ -53,6 +53,12 @@ class _TextformfieldPageState extends State<TextformfieldPage> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Por favor Ingresa tu correo";
+                    } else if (value.length < 6) {
+                      return "debe tener al menor 7 cracteres";
+                    } else if (!RegExp(
+                      '[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}',
+                    ).hasMatch(value)) {
+                      return "Ingrese un correo válido";
                     } else {
                       return null;
                     }
@@ -75,6 +81,8 @@ class _TextformfieldPageState extends State<TextformfieldPage> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Por favor Ingresa tu Contraseña";
+                    } else if (value.length < 7) {
+                      return "Debe tener al menos 8 caracteres";
                     } else {
                       return null;
                     }
