@@ -68,7 +68,23 @@ class _TextformfieldPageState extends State<TextformfieldPage> {
                 SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () {
-                    print(_formKey.currentState!.validate());
+                    // validando form
+                    if (_formKey.currentState!.validate()) {
+                      print(_formKey.currentState!.validate());
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Formulario validado"),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Revisa las alertas"),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
                   },
                   child: Text("Enviar form"),
                 ),
