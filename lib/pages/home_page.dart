@@ -4,6 +4,10 @@ import 'package:recetasappg12/widgets/form_item_widget.dart';
 import 'package:recetasappg12/widgets/receta_card_widget.dart';
 
 class HomePage extends StatefulWidget {
+  Color colorDeFondo;
+
+  HomePage(this.colorDeFondo);
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -18,10 +22,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff264653),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pop(context, "Hola como estas");
+        },
+      ),
+      backgroundColor: widget.colorDeFondo,
       appBar: AppBar(
         title: Text("App de recetas"),
-        backgroundColor: Color(0xff264653),
+        backgroundColor: widget.colorDeFondo,
         foregroundColor: Colors.white,
       ),
       body: Center(
