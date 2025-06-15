@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recetasappg12/models/receta_model.dart';
+import 'package:recetasappg12/pages/detalle_receta_page.dart';
 import 'package:recetasappg12/widgets/form_item_widget.dart';
 import 'package:recetasappg12/widgets/receta_card_widget.dart';
 
@@ -17,7 +18,25 @@ class _HomePageState extends State<HomePage> {
   TextEditingController _preparationController = TextEditingController();
   TextEditingController _imageController = TextEditingController();
 
+  RecetaModel receta1 = RecetaModel(
+    title: "Wafles",
+    preparation:
+        """ Primero agregamos la leche, huevos, azúcar, sal y esencia de vainilla en nuestra licuadora y mezclamos bien durante 2 minutos.
+                        Luego con un colador tamizamos la harina y el polvo de hornear. Luego los incluimos en la mezcla anterior y mezclamos hasta formar una pasta lisa y uniforme.
+                        Calentamos la waflera a la temperatura deseada y rociamos aceite en spray. Luego, colocamos la mezcla dentro y dejamos cocinar.
+                        Una vez listo, retirar el waffle, disponer sobre un plato y decorar con crema chantilly, frutillas, arándanos, hojas de menta y un generoso chorro de miel.
+                        ¡A disfrutar!""",
+    urlImage:
+        "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  );
   List<RecetaModel> recetasList = [];
+  @override
+  void initState() {
+    recetasList = [receta1];
+    recetasList.add(receta1);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +84,9 @@ class _HomePageState extends State<HomePage> {
                   );
 
                   recetasList.add(recetaAux);
+                  _titleController.clear();
+                  _preparationController.clear();
+                  _imageController.clear();
                   setState(() {});
                 },
                 child: Text("Registrar receta"),
@@ -79,19 +101,8 @@ class _HomePageState extends State<HomePage> {
                           title: e.title,
                           preparation: e.preparation,
                           urlImage: e.urlImage,
+                          paginaDestino: DetalleRecetaPage(e),
                         ),
-                      ),
-
-                      RecetaCardWidget(
-                        title: "Wafles",
-                        preparation:
-                            """ Primero agregamos la leche, huevos, azúcar, sal y esencia de vainilla en nuestra licuadora y mezclamos bien durante 2 minutos.
-                        Luego con un colador tamizamos la harina y el polvo de hornear. Luego los incluimos en la mezcla anterior y mezclamos hasta formar una pasta lisa y uniforme.
-                        Calentamos la waflera a la temperatura deseada y rociamos aceite en spray. Luego, colocamos la mezcla dentro y dejamos cocinar.
-                        Una vez listo, retirar el waffle, disponer sobre un plato y decorar con crema chantilly, frutillas, arándanos, hojas de menta y un generoso chorro de miel.
-                        ¡A disfrutar!""",
-                        urlImage:
-                            "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                       ),
                     ],
                   ),
