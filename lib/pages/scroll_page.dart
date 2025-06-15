@@ -30,19 +30,27 @@ class _ScrollPageState extends State<ScrollPage> {
         onPressed: () {
           int x = numeros.length;
           numeros.add(x + 1);
-          setState(() {});
+          // setState(() {});
         },
       ),
       appBar: AppBar(title: Text("Scroll Page")),
-      body: SingleChildScrollView(
-        // scrollDirection: Axis.horizontal,
-        child: Column(
-          children: [
-            Text("CABECERA"),
-            ...numeros.map((e) => buildContainer(e.toString())),
-          ],
-        ),
+      body: ListView.builder(
+        itemCount: numeros.length,
+        itemBuilder: (context, index) {
+          print(index);
+          return buildContainer(numeros[index].toString());
+        },
       ),
+
+      // SingleChildScrollView(
+      //   // scrollDirection: Axis.horizontal,
+      //   child: Column(
+      //     children: [
+      //       Text("CABECERA"),
+      //       ...numeros.map((e) => buildContainer(e.toString())),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
