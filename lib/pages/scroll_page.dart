@@ -34,13 +34,22 @@ class _ScrollPageState extends State<ScrollPage> {
         },
       ),
       appBar: AppBar(title: Text("Scroll Page")),
-      body: ListView.builder(
-        itemCount: numeros.length,
+
+      body: ListView.separated(
         itemBuilder: (context, index) {
-          print(index);
-          return buildContainer(numeros[index].toString());
+          return buildContainer("separated $index");
         },
+        separatorBuilder: (context, index) => Divider(),
+        itemCount: 100,
       ),
+
+      // ListView.builder(
+      //   itemCount: numeros.length,
+      //   itemBuilder: (context, index) {
+      //     print(index);
+      //     return buildContainer(numeros[index].toString());
+      //   },
+      // ),
 
       // SingleChildScrollView(
       //   // scrollDirection: Axis.horizontal,
