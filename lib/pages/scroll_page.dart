@@ -21,26 +21,54 @@ class _ScrollPageState extends State<ScrollPage> {
     );
   }
 
-  List<int> numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          int x = numeros.length;
-          numeros.add(x + 1);
-          // setState(() {});
-        },
-      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {}),
       appBar: AppBar(title: Text("Scroll Page")),
 
-      body: ListView.separated(
-        itemBuilder: (context, index) {
-          return buildContainer("separated $index");
-        },
-        separatorBuilder: (context, index) => Divider(),
-        itemCount: 100,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 200,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 20,
+                itemBuilder: (BuildContext context, int index) {
+                  return buildContainer(index.toString());
+                },
+              ),
+            ),
+
+            buildContainer("1"),
+            buildContainer("1"),
+            ...List.generate(
+              5,
+              (index) => Padding(
+                padding: EdgeInsets.all(16),
+                child: ListTile(title: Text("HIJO")),
+              ),
+            ),
+            buildContainer("1"),
+            buildContainer("1"),
+            buildContainer("1"),
+            buildContainer("1"),
+            buildContainer("1"),
+
+            SizedBox(
+              height: 210,
+              child: ListView.separated(
+                itemBuilder:
+                    (context, index) => buildContainer("separeted $index"),
+                separatorBuilder:
+                    (context, index) =>
+                        Container(height: 20, color: Colors.cyan),
+                itemCount: 20,
+              ),
+            ),
+          ],
+        ),
       ),
 
       // ListView.builder(
