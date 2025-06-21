@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recetasappg12/pages/calculator_page.dart';
 import 'package:recetasappg12/pages/curved_navigation_page.dart';
 import 'package:recetasappg12/pages/detalle_receta_page.dart';
 import 'package:recetasappg12/pages/home_page.dart';
@@ -11,7 +12,7 @@ void main() {
   runApp(
     MaterialApp(
       // home: HomePage(Color(0xff003049)),
-      home: CurvedNavigationPage(),
+      home: CalculatorPage(),
       debugShowCheckedModeBanner: false,
     ),
   );
