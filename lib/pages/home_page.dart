@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recetasappg12/models/receta_model.dart';
 import 'package:recetasappg12/pages/detalle_receta_page.dart';
+import 'package:recetasappg12/pages/navegacion_page.dart';
 import 'package:recetasappg12/widgets/form_item_widget.dart';
 import 'package:recetasappg12/widgets/receta_card_widget.dart';
 import 'package:recetasappg12/widgets/tipo_comida_widget.dart';
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   TextEditingController _titleController = TextEditingController();
   TextEditingController _preparationController = TextEditingController();
   TextEditingController _imageController = TextEditingController();
+  String? selectedTipoPlato;
 
   List<String> tipoComidaOpions = ["Entrada", "Plato de fondo", "Postre"];
 
@@ -31,6 +33,7 @@ class _HomePageState extends State<HomePage> {
                         ¡A disfrutar!""",
     urlImage:
         "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    tipoPlato: "Postre",
   );
   List<RecetaModel> recetasList = [];
   @override
@@ -44,6 +47,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.black),
+              child: Container(
+                padding: EdgeInsets.all(32),
+                width: double.infinity,
+                child: FlutterLogo(),
+              ),
+            ),
+            ListTile(
+              title: Text("Scroll Page"),
+              leading: Icon(Icons.insert_page_break_sharp),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NavegacionPage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ), //menú a la izquierda
+      // endDrawer: Drawer(), //menú a la derecha
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pop(context, "Hola como estas");
@@ -83,7 +111,8 @@ class _HomePageState extends State<HomePage> {
                 options: tipoComidaOpions,
                 colorFondo: widget.colorDeFondo,
                 funcionOnChanged: (value) {
-                  print(value);
+                  // print(value);
+                  selectedTipoPlato = value;
                 },
               ),
 
@@ -93,6 +122,7 @@ class _HomePageState extends State<HomePage> {
                     title: _titleController.text,
                     preparation: _preparationController.text,
                     urlImage: _imageController.text,
+                    tipoPlato: selectedTipoPlato!,
                   );
 
                   recetasList.add(recetaAux);
