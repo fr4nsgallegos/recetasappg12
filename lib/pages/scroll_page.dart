@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ScrollPage extends StatefulWidget {
+  Color bgColor;
+
+  ScrollPage(this.bgColor);
   @override
   State<ScrollPage> createState() => _ScrollPageState();
 }
@@ -25,8 +28,11 @@ class _ScrollPageState extends State<ScrollPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: () {}),
-      appBar: AppBar(title: Text("Scroll Page")),
-
+      appBar: AppBar(
+        title: Text("Scroll Page"),
+        backgroundColor: widget.bgColor,
+      ),
+      backgroundColor: widget.bgColor,
       body: SingleChildScrollView(
         child: Column(
           children: [

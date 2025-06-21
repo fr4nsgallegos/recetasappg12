@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TextfieldPage extends StatefulWidget {
+  Color bgColor;
+  TextfieldPage(this.bgColor);
+
   @override
   State<TextfieldPage> createState() => _TextfieldPageState();
 }
@@ -19,7 +22,11 @@ class _TextfieldPageState extends State<TextfieldPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Text Field example")),
+      backgroundColor: widget.bgColor,
+      appBar: AppBar(
+        title: Text("Text Field example"),
+        backgroundColor: widget.bgColor,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(32.0),
