@@ -3,6 +3,7 @@ import 'package:recetasappg12/models/receta_model.dart';
 import 'package:recetasappg12/pages/detalle_receta_page.dart';
 import 'package:recetasappg12/widgets/form_item_widget.dart';
 import 'package:recetasappg12/widgets/receta_card_widget.dart';
+import 'package:recetasappg12/widgets/tipo_comida_widget.dart';
 
 class HomePage extends StatefulWidget {
   Color colorDeFondo;
@@ -17,6 +18,8 @@ class _HomePageState extends State<HomePage> {
   TextEditingController _titleController = TextEditingController();
   TextEditingController _preparationController = TextEditingController();
   TextEditingController _imageController = TextEditingController();
+
+  List<String> tipoComidaOpions = ["Entrada", "Plato de fondo", "Postre"];
 
   RecetaModel receta1 = RecetaModel(
     title: "Wafles",
@@ -75,6 +78,15 @@ class _HomePageState extends State<HomePage> {
                 iconData: Icons.image,
                 maxLines: 1,
               ),
+
+              TipoComidaWidget(
+                options: tipoComidaOpions,
+                colorFondo: widget.colorDeFondo,
+                funcionOnChanged: (value) {
+                  print(value);
+                },
+              ),
+
               ElevatedButton(
                 onPressed: () {
                   RecetaModel recetaAux = RecetaModel(
